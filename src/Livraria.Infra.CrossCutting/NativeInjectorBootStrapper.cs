@@ -1,5 +1,12 @@
 ﻿using Livraria.Domain.Core.Bus;
 using Livraria.Domain.Core.Notifications;
+using Livraria.Domain.Interfaces;
+using Livraria.Domain.Livros.Commands;
+using Livraria.Domain.Livros.Handlers;
+using Livraria.Domain.Livros.Interfaces;
+using Livraria.Infra.Data.Context;
+using Livraria.Infra.Data.UnitOfWork;
+using Livraria.Infra.Livros.Repository;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,12 +30,15 @@ namespace Livraria.CrossCutting
 
         private static void InfraData(IServiceCollection services)
         {
-            
+            services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<LivrariaContext>();
+
         }
 
         private static void DomainCommand(IServiceCollection services)
         {
-           
+            services.AddScoped<IRequestHandler<AdicionarLivroCommand>, LivroHandler>();
         }
 
         private static void AppService(IServiceCollection services)

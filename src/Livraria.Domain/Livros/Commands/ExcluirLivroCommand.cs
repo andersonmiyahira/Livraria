@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Livraria.Domain.Livros.Validations;
+using System;
 
 namespace Livraria.Domain.Livros.Commands
 {
     public class ExcluirLivroCommand : LivroCommand
     {
+        public ExcluirLivroCommand(Guid id)
+        {
+            Id = id;
+        }
+
         public override bool IsValid()
         {
-            return true;
-            //throw new NotImplementedException();
+            ValidationResult = new ExcluirLivroCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

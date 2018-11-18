@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Livraria.Domain.Livros.Validations;
 
 namespace Livraria.Domain.Livros.Commands
 {
@@ -8,8 +6,8 @@ namespace Livraria.Domain.Livros.Commands
     {
         public override bool IsValid()
         {
-            return true;
-            //throw new NotImplementedException();
+            ValidationResult = new AdicionarLivroCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

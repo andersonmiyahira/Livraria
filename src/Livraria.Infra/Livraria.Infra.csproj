@@ -15,7 +15,6 @@
   <ItemGroup>
     <Folder Include="Context\" />
     <Folder Include="Livros\Mappings\" />
-    <Folder Include="Livros\" />
     <Folder Include="UnitOfWork\" />
     <Folder Include="RepositoryBase\" />
   </ItemGroup>

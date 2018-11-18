@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AppService\Livros\" />
     <Folder Include="AutoMapper\" />
   </ItemGroup>
 
