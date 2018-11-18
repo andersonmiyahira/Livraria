@@ -1,4 +1,6 @@
-﻿using Livraria.Domain.Core.Bus;
+﻿using Livraria.Application.AppService.Livros;
+using Livraria.Application.AppService.Livros.Interfaces;
+using Livraria.Domain.Core.Bus;
 using Livraria.Domain.Core.Notifications;
 using Livraria.Domain.Interfaces;
 using Livraria.Domain.Livros.Commands;
@@ -33,17 +35,19 @@ namespace Livraria.CrossCutting
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<LivrariaContext>();
-
         }
 
         private static void DomainCommand(IServiceCollection services)
         {
             services.AddScoped<IRequestHandler<AdicionarLivroCommand>, LivroHandler>();
+            services.AddScoped<IRequestHandler<AtualizarLivroCommand>, LivroHandler>();
+            services.AddScoped<IRequestHandler<ExcluirLivroCommand>, LivroHandler>();
+
         }
 
         private static void AppService(IServiceCollection services)
         {
-           
+            services.AddScoped<ILivroAppService, LivroAppService>();
         }
 
         private static void DomainBus(IServiceCollection services)

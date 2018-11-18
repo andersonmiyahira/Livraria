@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Livraria.Application.AppService.Livros.ViewModels.Request;
+using Livraria.Domain.Livros.Commands;
 using System;
 
 namespace Livraria.Application.AutoMapper
@@ -7,7 +9,9 @@ namespace Livraria.Application.AutoMapper
     {
         public ViewModelToDomainProfile()
         {
-          
-        } 
+            CreateMap<LivroViewModelRequest, AdicionarLivroCommand>();
+            CreateMap<LivroViewModelRequest, AtualizarLivroCommand>();
+
+        }
     }
 }

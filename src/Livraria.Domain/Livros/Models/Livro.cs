@@ -24,5 +24,30 @@ namespace Livraria.Domain.Livros.Models
         public int Edicao { get; private set; }
         public string ISBN { get; private set; }
         public string Idioma { get; private set; }
+
+
+        public void Atualizar(string titulo, string descricao, string autor, string editora, int edicao, string iSBN, string idioma)
+        {
+            if(!string.IsNullOrEmpty(titulo))
+                Titulo = titulo;
+
+            if(!string.IsNullOrEmpty(descricao))
+                Descricao = descricao;
+
+            if(!string.IsNullOrEmpty(autor))
+                Autor = autor;
+
+            if(!string.IsNullOrEmpty(editora))
+                Editora = editora;
+
+            if(edicao > default(int))
+                Edicao = edicao;
+
+            if(!string.IsNullOrEmpty(iSBN))
+                ISBN = iSBN;
+
+            if(!string.IsNullOrEmpty(idioma))
+                Idioma = idioma;
+        }
     }
 }

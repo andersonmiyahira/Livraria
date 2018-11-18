@@ -8,7 +8,6 @@ namespace Livraria.Application.AutoMapper
         {
             mapperConfiguration.AddProfile(new DomainToViewModelProfile());
             mapperConfiguration.AddProfile(new ViewModelToDomainProfile());
-            mapperConfiguration.AddProfile(new ViewModelFilterToDomainProfile());
         }
     }
 }

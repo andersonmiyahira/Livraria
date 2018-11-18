@@ -21,5 +21,12 @@ namespace Livraria.Infra.Livros.Repository
                       .AsNoTracking()
                       .Where(_ => string.IsNullOrEmpty(titulo) || _.Titulo.ToUpper().Contains(titulo.ToUpper()));
         }
+
+        public override Livro GetById(Guid id)
+        {
+            return DbSet
+                        .AsNoTracking()
+                        .FirstOrDefault(_ => _.Id == id);
+        }
     }
 }

@@ -6,7 +6,6 @@ using Livraria.Domain.Livros.Commands;
 using Livraria.Domain.Livros.Interfaces;
 using Livraria.Domain.Livros.Models;
 using MediatR;
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,28 +31,28 @@ namespace Livraria.Domain.Livros.Handlers
             _mediatr = bus;
         }
 
-        public Task Handle(AdicionarLivroCommand request, CancellationToken cancellationToken)
+        public Task Handle(AdicionarLivroCommand command, CancellationToken cancellationToken)
         {
             // simple fields validations
-            if (!request.IsValid())
+            if (!command.IsValid())
             {
-                NotifyValidationErrors(request);
+                NotifyValidationErrors(command);
                 return Task.CompletedTask;
             }
 
             // init domain model
-            var livro = new Livro(request.Titulo,
-                                  request.Descricao,
-                                  request.Autor,
-                                  request.Editora,
-                                  request.Edicao,
-                                  request.ISBN,
-                                  request.Idioma);
+            var livro = new Livro(command.Titulo,
+                                  command.Descricao,
+                                  command.Autor,
+                                  command.Editora,
+                                  command.Edicao,
+                                  command.ISBN,
+                                  command.Idioma);
 
             // validating book title
             if (_livroRepository.ObterPorTitulo(livro.Titulo).FirstOrDefault() != null)
             {
-                _mediatr.RaiseEvent(new DomainNotification(request.MessageType, "Já existe um livro com esse título."));
+                _mediatr.RaiseEvent(new DomainNotification(command.MessageType, "Já existe um livro com esse título."));
                 return Task.CompletedTask;
             }
 
@@ -63,14 +62,45 @@ namespace Livraria.Domain.Livros.Handlers
             return Task.CompletedTask;
         }
 
-        public Task Handle(AtualizarLivroCommand request, CancellationToken cancellationToken)
+        public Task Handle(AtualizarLivroCommand command, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            // simple fields validations
+            if (!command.IsValid())
+            {
+                NotifyValidationErrors(command);
+                return Task.CompletedTask;
+            }  
+
+            var livro = _livroRepository.GetById(command.Id);
+            if(livro == null)
+            {
+                _mediatr.RaiseEvent(new DomainNotification(command.MessageType, "Livro não encontrado."));
+                return Task.CompletedTask;
+            }
+
+            //updating data
+            livro.Atualizar(command.Titulo, command.Descricao, command.Autor, command.Editora, command.Edicao, command.ISBN, command.Idioma);
+
+            _livroRepository.Update(livro);
+
+            Commit();
+            return Task.CompletedTask;
         }
 
-        public Task Handle(ExcluirLivroCommand request, CancellationToken cancellationToken)
+        public Task Handle(ExcluirLivroCommand command, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            // simple fields validations
+            if (!command.IsValid())
+            {
+                NotifyValidationErrors(command);
+                return Task.CompletedTask;
+            }
+
+            _livroRepository.Remove(command.Id);
+
+            Commit();
+            return Task.CompletedTask;
+
         }
     }
 }
