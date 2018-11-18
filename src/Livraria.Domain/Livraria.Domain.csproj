@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Livros\Commands\" />
-    <Folder Include="Livros\Handlers\" />
-    <Folder Include="Livros\Interfaces\" />
-    <Folder Include="Livros\Validations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Livraria.Domain.Core\Livraria.Domain.Core.csproj" />
   </ItemGroup>
 
