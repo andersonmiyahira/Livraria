@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Livros\Commands\" />
+    <Folder Include="Livros\Handlers\" />
+    <Folder Include="Livros\Interfaces\" />
+    <Folder Include="Livros\Validations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Livraria.Domain.Core\Livraria.Domain.Core.csproj" />
+  </ItemGroup>
+
+</Project>
