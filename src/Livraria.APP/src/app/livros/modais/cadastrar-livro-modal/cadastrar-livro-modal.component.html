@@ -1,0 +1,50 @@
+<ng-template #cadastrar let-c="close" let-d="dismiss">
+  <div class="modal-header bg-primary">
+    <h4 class="modal-title">Cadastrar Livro</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <div class="row">
+        <div class="col-md-12">
+          <form method="post" action="/" novalidate="novalidate" [formGroup]="form">
+            <div class="form-group">
+              <label>Título</label>
+              <input class="form-control" type="text" [(ngModel)]="model.titulo" name="titulo" formControlName="titulo">
+            </div>
+            <div class="form-group">
+              <label>Autor</label>
+              <input class="form-control" type="text" [(ngModel)]="model.autor" name="autor" formControlName="autor">
+            </div>
+            <div class="form-group">
+              <label>Editora</label>
+              <input class="form-control" type="text" [(ngModel)]="model.editora" name="editora" formControlName="editora">
+            </div>
+            <div class="form-group">
+              <label>Descrição</label>
+              <input class="form-control" type="text" [(ngModel)]="model.descricao" name="descricao" formControlName="descricao">
+            </div>
+            <div class="form-group">
+              <label>ISBN</label>
+              <input class="form-control" type="text" [(ngModel)]="model.isbn" name="isbn" formControlName="isbn">
+            </div>
+            <div class="form-group">
+              <label>Edição</label>
+              <input class="form-control" type="text" [(ngModel)]="model.edicao" name="edicao" formControlName="edicao">
+            </div>
+            <div class="form-group">
+              <label>Idioma</label>
+              <input class="form-control" type="text" [(ngModel)]="model.idioma" name="Idioma" formControlName="idioma">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary btn-left" (click)="salvar('Close click')" [disabled]="form.invalid">Salvar</button>
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Fechar</button>
+  </div>
+</ng-template>

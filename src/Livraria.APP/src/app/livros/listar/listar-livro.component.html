@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>Livros</h2>
+  <div class="card bg-light mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered table-striped" style="margin-bottom: 0;">
+            <thead>
+              <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">Título</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Editora</th>
+                <th scope="col">Edição</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Idioma</th>
+                <th scope="col" style="width:100px;text-align: center;">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let livro of livros">
+                <!-- <th scope="row">{{livro.id}}</th> -->
+                <td>{{livro.titulo}}</td>
+                <td>{{livro.descricao}}</td>
+                <td>{{livro.autor}}</td>
+                <td>{{livro.editora}}</td>
+                <td>{{livro.edicao}}</td>
+                <td>{{livro.isbn}}</td>
+                <td>{{livro.idioma}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-sm" (click)="cadastrarOpenModal(livro)" ngbTooltip="Editar">
+                    <span class="fas fa-edit"></span>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="excluirOpenModal(livro)" ngbTooltip="Excluir">
+                    <span class="fas fa-trash-alt"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted text-right">
+      <button type="button" class="btn btn-primary" (click)="novoOpenModal()">
+        <span class="glyphicon glyphicon-trash"></span> Novo
+      </button>
+    </div>
+  </div>
+</div>
+ 
+<app-excluir-livro-modal #modalExcluir (onCloseModalExcluir)="closeModalExcluir($event)"></app-excluir-livro-modal>
+<app-cadastrar-livro-modal #modalCadastrar (onCloseModalCadastrar)="closeModalCadastrar($event)"></app-cadastrar-livro-modal>

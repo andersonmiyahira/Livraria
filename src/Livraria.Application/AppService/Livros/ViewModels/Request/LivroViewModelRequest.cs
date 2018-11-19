@@ -4,7 +4,7 @@ namespace Livraria.Application.AppService.Livros.ViewModels.Request
 {
     public class LivroViewModelRequest
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string Autor { get; set; }
