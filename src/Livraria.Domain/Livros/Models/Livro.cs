@@ -1,4 +1,5 @@
 ﻿using Livraria.Domain.Core.Models;
+using System;
 
 namespace Livraria.Domain.Livros.Models
 {
@@ -15,7 +16,7 @@ namespace Livraria.Domain.Livros.Models
             Edicao = edicao;
             ISBN = iSBN;
             Idioma = idioma;
-        }
+        } 
 
         public string Titulo { get; private set; }
         public string Descricao { get; private set; }
