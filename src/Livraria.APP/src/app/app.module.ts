@@ -14,11 +14,7 @@ import { NavBarComponent } from './menu/nav-bar.component';
 import { LoadScreenComponent } from './load-screen/load-screen.component';
 import { LoaderInterceptorService } from './shared/interceptors/load-screen.interceptor';
 import { LoaderService } from './load-screen/service/load-screen.service';
-
-import { ListarLivroComponent } from './livros/listar/listar-livro.component';
-import { LivroService } from './livros/livro.service';
-import { ExcluirLivroModalComponent } from './livros/modais/excluir-livro-modal/excluir-livro-modal.component';
-import { CadastrarLivroModalComponent } from './livros/modais/cadastrar-livro-modal/cadastrar-livro-modal.component';
+import { LivroModule } from './livros/livro.module';
 
 @NgModule({
   imports: [
@@ -29,16 +25,14 @@ import { CadastrarLivroModalComponent } from './livros/modais/cadastrar-livro-mo
     AppRoutingModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+
+    LivroModule
   ],
   declarations: [
     AppComponent,
     LoadScreenComponent,
-
     NavBarComponent,
-    ListarLivroComponent,
-    ExcluirLivroModalComponent,
-    CadastrarLivroModalComponent,
   ],
   entryComponents: [
   ],
@@ -47,7 +41,6 @@ import { CadastrarLivroModalComponent } from './livros/modais/cadastrar-livro-mo
   providers: [
     ApiService,
     LoaderService,
-    LivroService,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
