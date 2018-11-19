@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppRoutingModule } from './routes/app-routing.module';
 import { ApiService } from './services/api.service';
@@ -21,11 +23,13 @@ import { CadastrarLivroModalComponent } from './livros/modais/cadastrar-livro-mo
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, 
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    SimpleNotificationsModule.forRoot()
   ],
   declarations: [
     AppComponent,

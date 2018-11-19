@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LivroModel } from '../models/livro.model';
 import { FormGroup } from '@angular/forms';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LivroService } from '../livro.service';
 import { ExcluirLivroModalComponent } from '../modais/excluir-livro-modal/excluir-livro-modal.component';
 import { CadastrarLivroModalComponent } from '../modais/cadastrar-livro-modal/cadastrar-livro-modal.component';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-listar-livro',
@@ -22,10 +22,11 @@ export class ListarLivroComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private livroService: LivroService) { }
+  constructor(private livroService: LivroService,
+    private _notifications: NotificationsService) { }
 
   ngOnInit() {
-    
+
     this.obterLivros();
   }
 
@@ -46,6 +47,7 @@ export class ListarLivroComponent implements OnInit {
     if (result.status === 'OK') {
       this.livroService.excluirLivro(result.model).subscribe(res => {
 
+        this._notifications.success("Sucesso", "Livro excluído com sucesso.");
         var indexObjExcluido = this.livros.findIndex(_ => _.id == result.model.id);
         this.livros.splice(indexObjExcluido, 1);
       });
@@ -67,11 +69,15 @@ export class ListarLivroComponent implements OnInit {
     if (result.status === 'OK') {
       if (result.model.id) {
         this.livroService.atualizarLivro(result.model).subscribe(res => {
+        
+          this._notifications.success("Sucesso", "Livro atualizado com sucesso.");
           this.obterLivros();
         });
       }
       else {
         this.livroService.salvarLivro(result.model).subscribe(res => {
+
+          this._notifications.success("Sucesso", "Livro inserido com sucesso.");
           this.obterLivros();
         });
       }
